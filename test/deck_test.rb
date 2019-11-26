@@ -45,7 +45,7 @@ class DeckTest < Minitest::Test
     deck = Deck.new(cards)
 
     assert_equal 2, deck.cards_in_category(:STEM).length
-    asser_equal 0, deck.cards_in_category("Pop Culture").length
-    assert_equal "What is the capital of Alaska?", deck.cards_in_category(:Geography).question
+    assert_equal 0, deck.cards_in_category("Pop Culture").length
+    assert_equal "What is the capital of Alaska?", deck.cards_in_category(:Geography)[0].question
   end
 end
