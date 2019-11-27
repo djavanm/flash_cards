@@ -49,7 +49,7 @@ class RoundTest < Minitest::Test
     deck = Deck.new(cards)
     round = Round.new(deck)
 
-    assert_equal "What is the capital of Alaska", round.current_card.question
+    assert_equal "What is the capital of Alaska?", round.current_card.question
     assert_equal "Juneau", round.current_card.answer
     assert_equal :Geography, round.current_card.category
   end
@@ -66,8 +66,8 @@ class RoundTest < Minitest::Test
     assert_instance_of Turn, new_turn
     assert_equal 1, round.number_correct
     assert_equal 1, round.turns.count
-    assert_equal "Incorrect.", round.turns.last.feedback
-    refute "What is the capital of Alaska?", round.current_card.question
+    assert_equal "Correct!", round.turns.last.feedback
+    assert_equal "Mars", round.current_card.answer
   end
 
   def test_it_keeps_track_of_multiple_turns
@@ -84,8 +84,8 @@ class RoundTest < Minitest::Test
     assert_equal 1, round.number_correct
     assert_equal 2, round.turns.count
     assert_equal 50.0, round.percent_correct
-    assert_equal 100.0 percent_correct_by_category(:Geography)
-    assert_equal 0 percent_correct_by_category(:STEM)
-    assert_equal "Describe in words the exact direction that is 697.5° clockwise from due north?", "North north west", round.current_cart.question
+    assert_equal 100.0, round.percent_correct_by_category(:Geography)
+    assert_equal 0, round.percent_correct_by_category(:STEM)
+    assert_equal "Describe in words the exact direction that is 697.5° clockwise from due north?", round.current_card.question
   end
 end
